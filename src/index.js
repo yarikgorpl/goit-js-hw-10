@@ -22,11 +22,9 @@ function onFormInput(event) {
   fetchCountries(name)
     .then(response => {
       if (response.length === 1) {
-        oneCountry;
-        console.log(1);
+        oneCountry(response);
       } else if (response.length > 1 && response.length <= 10) {
-        listCountries;
-        console.log(2);
+        listCountries(response);
       } else {
         Notiflix.Notify.info(
           'Too many matches found. Please enter a more specific name.'
@@ -56,9 +54,8 @@ function oneCountry(response) {
           <p>Languages: ${languages.map(el => el.value).join(', ')}</p>`;
     })
     .join('');
-  console.log(fullInfo);
-  refs.info.innerHTML = fullInfo;
-  refs.list.innerHTML = '';
+  console.log(oneCountry);
+  refs.info.insertAdjacentHTML('beforeend', fullInfo);
 }
 
 function listCountries(response) {
@@ -74,6 +71,5 @@ function listCountries(response) {
     })
     .join('');
   console.log(shortInfo);
-  refs.list.innerHTML = shortInfo;
-  refs.info.innerHTML = '';
+  refs.list.insertAdjacentHTML('beforeend', shortInfo);
 }
