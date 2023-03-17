@@ -32,7 +32,6 @@ function onFormInput(event) {
       }
     })
     .catch(error => {
-      console.log(3);
       Notiflix.Notify.failure('Oops, there is no country with that name');
     });
 }
@@ -48,10 +47,12 @@ function oneCountry(response) {
       return `<img
       src="${flags.svg}"
       alt="${name.official}" width = "25" height = "15" />
-      <h1>${name.official}</h1>
-          <p>Capital: ${capital}</p>
-          <p>Population: ${population}</p>
-          <p>Languages: ${languages.map(el => el.value).join(', ')}</p>`;
+      <h1 class ='name_country'>${name.official}</h1>
+          <p class ='description'>Capital: ${capital}</p>
+          <p class ='description'>Population: ${population}</p>
+          <p class ='description'>Languages: ${Object.values(languages).join(
+            ', '
+          )}</p>`;
     })
     .join('');
   console.log(oneCountry);
@@ -61,12 +62,12 @@ function oneCountry(response) {
 function listCountries(response) {
   const shortInfo = response
     .map(({ name, flags }) => {
-      return `<li>
+      return `<li class ='list_countries'>
     <img src="${flags.svg}"
     alt="${name.official}"
     width = "25"
     height = "15" />
-  <p>${name.official}</p>
+  <p class = 'description'>${name.official}</p>
 </li>`;
     })
     .join('');
